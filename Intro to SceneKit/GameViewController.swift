@@ -39,8 +39,8 @@ class GameViewController: UIViewController {
     
     func setupSegmentedControl() {
         // create and configure segmented control
-        segmentedModes = UISegmentedControl(items: ["三球", "直排球", "小到大"])
-        segmentedModes.selectedSegmentIndex = 0
+        segmentedModes = UISegmentedControl(items: ["三球", "直排球", "小到大", "方塊"])
+        segmentedModes.selectedSegmentIndex = mode
         // event handler
         segmentedModes.addTarget(self, action: #selector(onChangeModes(_:)), for: .valueChanged)
         // add to view hierarchy
@@ -56,6 +56,7 @@ class GameViewController: UIViewController {
     
     private func setupScene() {
         scene = PrimitivesScene()
+//        scene.spawnNodes(mode: mode)
         sceneView.scene = scene
     }
     

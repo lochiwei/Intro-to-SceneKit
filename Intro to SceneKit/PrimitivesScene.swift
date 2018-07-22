@@ -25,14 +25,20 @@ class PrimitivesScene: SCNScene {
     
     func setupScene() {
         spawnNodes()
+//        putGridOfBalls()
+//        put3Spheres()
+//        putGridOfBalls()
+        print("Primitives Scene init ...")
     }
     
     func spawnNodes(mode:Int = 0) {
+//        return
         rootNode.childNodes.forEach { $0.removeFromParentNode() }
         switch mode {
         case 0: put3Spheres()
         case 1: putBallsOnAxis()
         case 2: putBallsFromSmallToBig(number: 10, radius: 0.5, increment: 0.3)
+        case 3: putGridOfBalls()
         default: put3Spheres()
         }
     }
@@ -71,6 +77,23 @@ class PrimitivesScene: SCNScene {
             let s = SCNSphere(radius: r)
             let c = (k % 2 == 0) ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1)
             putNode(geometry: s, color: c, at: [x, 0, 0])
+        }
+    }
+    
+    func putGridOfBalls() {
+        
+        let n = 20
+        let r = CGFloat(1.0)
+        let x0 = -(n-1)*r
+        
+        for k in 0...399 {
+            let i = k / n
+            let j = k % n
+            let x = x0 + i*2*r
+            let y = x0 + j*2*r
+            let s = SCNSphere(radius: r)
+            let c = ((i+j) % 2 == 0) ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1)
+            putNode(geometry: s, color: c, at: [x, y, 0])
         }
     }
     
