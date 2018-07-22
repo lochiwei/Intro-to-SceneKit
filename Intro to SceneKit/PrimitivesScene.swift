@@ -27,12 +27,12 @@ class PrimitivesScene: SCNScene {
         spawnNodes()
     }
     
-    func spawnNodes(mode:Int = 1) {
+    func spawnNodes(mode:Int = 0) {
         rootNode.childNodes.forEach { $0.removeFromParentNode() }
         switch mode {
-        case 1: put3Spheres()
-        case 2: putBallsOnAxis()
-        case 3: putBallsFromSmallToBig(number: 10, radius: 0.5, increment: 0.3)
+        case 0: put3Spheres()
+        case 1: putBallsOnAxis()
+        case 2: putBallsFromSmallToBig(number: 10, radius: 0.5, increment: 0.3)
         default: put3Spheres()
         }
     }

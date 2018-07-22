@@ -12,10 +12,17 @@ import SceneKit
 
 class GameViewController: UIViewController {
     
+    // MARK: - Model
+    private var mode = 0 {
+        didSet { scene.spawnNodes(mode: mode) }
+    }
+    
     // MARK: - Private Properties
     
-    private var scene: SCNScene!
+    private var scene: PrimitivesScene!
     private var sceneView: SCNView!
+    
+    private var segmentedModes: UISegmentedControl!
     
     // MARK: - View Controller Life Cycle
 
@@ -24,6 +31,24 @@ class GameViewController: UIViewController {
         // create and configure a new scene
         setupSceneView()
         setupScene()
+        // controls
+        setupSegmentedControl()
+    }
+    
+    // MARK: - Controls
+    
+    func setupSegmentedControl() {
+        // create and configure segmented control
+        segmentedModes = UISegmentedControl(items: ["三球", "直排球", "小到大"])
+        segmentedModes.selectedSegmentIndex = 0
+        // event handler
+        segmentedModes.addTarget(self, action: #selector(onChangeModes(_:)), for: .valueChanged)
+        // add to view hierarchy
+        view.addSubview(segmentedModes)
+    }
+    
+    @objc func onChangeModes(_ control:UISegmentedControl) {
+        mode = control.selectedSegmentIndex
     }
     
     
