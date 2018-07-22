@@ -25,10 +25,6 @@ class PrimitivesScene: SCNScene {
     
     func setupScene() {
         spawnNodes()
-//        putGridOfBalls()
-//        put3Spheres()
-//        putGridOfBalls()
-        print("Primitives Scene init ...")
     }
     
     func spawnNodes(mode:Int = 0) {

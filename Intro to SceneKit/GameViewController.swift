@@ -56,7 +56,6 @@ class GameViewController: UIViewController {
     
     private func setupScene() {
         scene = PrimitivesScene()
-//        scene.spawnNodes(mode: mode)
         sceneView.scene = scene
     }
     
